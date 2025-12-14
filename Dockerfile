@@ -5,7 +5,7 @@ WORKDIR /download
 
 ARG vs_type=stable
 ARG vs_os=linux-x64
-ARG vs_version=1.21.5
+ARG vs_version=1.21.6
 
 RUN apk update
 RUN apk add wget tar
@@ -25,6 +25,6 @@ COPY --from=downloader "./download/" "/game"
 EXPOSE 42420
 
 # see https://docs.docker.com/reference/build-checks/json-args-recommended/
-SHELL [ "sh", "-c" ]
+SHELL [ "/bin/bash", "-c" ]
 # Execution command
 ENTRYPOINT dotnet VintagestoryServer.dll --dataPath $VS_DATA_PATH
